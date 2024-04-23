@@ -26,8 +26,8 @@ services:
     networks: 
       - resume-app-docker-network
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
-      - ./alert.rules.yml:/etc/prometheus/alert.rules.yml:ro
+      - prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml:ro
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
@@ -52,7 +52,7 @@ services:
     networks: 
       - resume-app-docker-network
     volumes:
-      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
       - alertmanager_data:/alertmanager
     ports:
       - "9093:9093"

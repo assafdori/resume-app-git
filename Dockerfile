@@ -1,19 +1,21 @@
 # lightweight Nginx image
 FROM nginx:alpine
 
+# Set the working directory
+WORKDIR /usr/share/nginx/html
+
 # Copy HTML, CSS, JavaScript, images, and PDF files to Nginx web root
-COPY index.html /usr/share/nginx/html
-COPY resume.js /usr/share/nginx/html
-COPY resume.css /usr/share/nginx/html
-COPY favicon.png /usr/share/nginx/html
-COPY screen-record.gif /usr/share/nginx/html
-COPY resume.pdf /usr/share/nginx/html
+COPY app/index.html .
+COPY app/resume.js .
+COPY app/resume.css .
+COPY app/favicon.png .
+COPY app/resume.pdf .
 
 # Expose port 80 & 443 of the container
 EXPOSE 80
 EXPOSE 443
 
-# Add internal health check function (extenral health check done via other container)
+# Add internal health check function (external health check done via other container)
 HEALTHCHECK --interval=30s --timeout=10s \
     CMD curl -f http://localhost:80/resume.pdf --output /dev/null || exit 1
 

@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: CI Workflow
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
 
 env:
   DOCKER_IMAGE_NAME: asixl/cli-resume:github
+  AWS_REGION: us-east-1
 
 jobs:
   build:
@@ -28,8 +29,8 @@ jobs:
       - name: "Configure AWS Credentials"
         uses: aws-actions/configure-aws-credentials@v4.0.2
         with:
-          aws-access-key-id:      ${{ secrets.AWS_ACCESS_KEY_ID  }}
-          aws-secret-access-key:  ${{ secrets.AWS_SECRET_ACCESS_KEY  }}
-          aws-region: us-east-1
+          aws-access-key-id:      ${{     secrets.AWS_ACCESS_KEY_ID      }}
+          aws-secret-access-key:  ${{     secrets.AWS_SECRET_ACCESS_KEY  }}
+          aws-region:             ${{         env.AWS_REGION             }}
 
     
