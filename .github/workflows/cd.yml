@@ -37,10 +37,9 @@ jobs:
         working-directory: terraform
         run: terraform state list
 
-
-    #   - name: Terraform Plan deployment
-    #     working-directory: terraform
-    #     run: terraform plan
+      - name: Terraform Plan deployment
+        working-directory: terraform
+        run: terraform plan
 
     #   - name: Terraform Apply changes
     #     working-directory: terraform
