@@ -1,4 +1,4 @@
-name: CI/CD Workflow - Production
+name: CI/CD Workflow - Dev
 
 on:
   push:
