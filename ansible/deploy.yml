@@ -1,0 +1,15 @@
+- name: Deploy Web Application
+  hosts: all
+  become: yes
+  vars:
+    compose_file_name: "docker-compose.yml"
+    compose_file_dest: "/home/ec2-user/{{ compose_file_name }}"
+  
+  tasks:
+    - name: Fetch Docker Compose file
+      get_url:
+        url: "https://example.com/path/to/docker-compose.yml"
+        dest: "{{ compose_file_dest }}"
+
+    - name: Run Docker Compose
+      command: "docker-compose -f {{ compose_file_dest }} up -d"
